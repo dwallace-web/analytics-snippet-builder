@@ -2,6 +2,9 @@ let inputs = [];
 
 function generateSnippet() {
   const lineOfBusiness = document.getElementById('lineOfBusiness').value;
+  const product = document.getElementById('product').value;
+  const variableA = document.getElementById('variableA').value;
+  const variableB = document.getElementById('variableB').value;
   // ... (other variables)
 
   const outputType = document.getElementById('outputType').value;
