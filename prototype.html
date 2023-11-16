@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Snippet Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>JavaScript Snippet Generator</h1>
+  <div>
+    <!-- Your input fields, button, select dropdown, and table structure -->
+    <label for="lineOfBusiness">Line of Business:</label>
+    <input type="text" id="lineOfBusiness" placeholder="Line of Business"><br><br>
+    
+    <!-- Other input fields for product, variableA, variableB -->
+    <label for="product">Product:</label>
+    <input type="text" id="product" placeholder="Product"><br><br>
+    
+    <label for="variableA">Variable A:</label>
+    <input type="text" id="variableA" placeholder="Variable A"><br><br>
+    
+    <label for="variableB">Variable B:</label>
+    <input type="text" id="variableB" placeholder="Variable B"><br><br>
+
+    <button onclick="generateSnippet()">Generate Snippet</button>
+    <select id="outputType">
+      <option value="contentImpression">Content Impression</option>
+      <option value="customError">Custom Error Message</option>
+      <option value="customButtonClick">Custom Button Click</option>
+    </select>
+  </div>
+  
+  <table id="snippetTable">
+    <thead>
+      <tr>
+        <th>Request ID</th>
+        <th>JavaScript Snippet</th>
+        <th>Plaintext Appearance</th>
+      </tr>
+    </thead>
+    <tbody id="snippetData"></tbody>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>
