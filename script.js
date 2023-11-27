@@ -11,24 +11,49 @@ function generateSnippet() {
 
   let javascriptSnippet = '';
 
+  let generatedSnippet = '';
+  let plaintextSnippet = '';
+
+
   if (outputType === 'contentImpression') {
-    javascriptSnippet = `(“ContentImpression”, {
+    generatedSnippet = `(“ContentImpression”, {
       “Detail”: “${lineOfBusiness} | ${product} | ${variableA} | ${variableB}”
     })`;
+    plaintextSnippet = `“${lineOfBusiness} | ${product} | ${variableA} | ${variableB}”`;
   } else if (outputType === 'customError') {
-    javascriptSnippet = `(“custom”, {
+    generatedSnippet = `(“custom”, {
       “Detail”: “Error Message: ${lineOfBusiness} | ${product} | ${variableA} | ${variableB}”
     })`;
+    plaintextSnippet = `“Error Message: ${lineOfBusiness} | ${product} | ${variableA} | ${variableB}”`;
   } else if (outputType === 'customButtonClick') {
-    javascriptSnippet = `(“custom”, {
+    generatedSnippet = `(“customLink”, {
       “Detail”: “Specialty Button | ${lineOfBusiness} | ${product} | ${variableA} | ${variableB}”
     })`;
-  }
+    plaintextSnippet = `“Specialty Button | ${lineOfBusiness} | ${product} | ${variableA} | ${variableB}”`;
+  } else if (outputType === 'ACDL') {
+    generatedSnippet = `adobeDataLayer.push({
+      event: '${lineOfBusiness} | ${product}',
+      key: '${variableA} | ${variableB}'
+    });`;
+    plaintextSnippet = `{event: '${lineOfBusiness} | ${product}', key: '${variableA} | ${variableB}'}`;
+  } else if (outputType === 'googleDataLayer') {
+    generatedSnippet = `dataLayer.push({
+      dimension1: '${lineOfBusiness} | ${product}',
+      dimension2: '${variableA} | ${variableB}'
+    });`;
+    plaintextSnippet = `dimension1: '${lineOfBusiness} | ${product}', dimension2: '${variableA} | ${variableB}'`;
+  } 
 
+
+  // const newInput = {
+  //   requestId: inputs.length + 1,
+  //   snippet: javascriptSnippet,
+  //   plaintext: javascriptSnippet.replace(/[\{\}]|\"/g, '')
+  // };
   const newInput = {
     requestId: inputs.length + 1,
-    snippet: javascriptSnippet,
-    plaintext: javascriptSnippet.replace(/[\{\}]|\"/g, '')
+    snippet: generatedSnippet,
+    plaintext: plaintextSnippet
   };
 
   inputs.push(newInput);
