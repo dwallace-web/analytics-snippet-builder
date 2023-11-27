@@ -9,7 +9,7 @@ function generateSnippet() {
 
   const outputType = document.getElementById('outputType').value;
 
-  let javascriptSnippet = '';
+  // let javascriptSnippet = '';
 
   let generatedSnippet = '';
   let plaintextSnippet = '';
@@ -44,12 +44,6 @@ function generateSnippet() {
     plaintextSnippet = `dimension1: '${lineOfBusiness} | ${product}', dimension2: '${variableA} | ${variableB}'`;
   } 
 
-
-  // const newInput = {
-  //   requestId: inputs.length + 1,
-  //   snippet: javascriptSnippet,
-  //   plaintext: javascriptSnippet.replace(/[\{\}]|\"/g, '')
-  // };
   const newInput = {
     requestId: inputs.length + 1,
     snippet: generatedSnippet,
@@ -67,7 +61,38 @@ function displayInputs() {
   inputs.forEach(input => {
     const row = snippetData.insertRow();
     row.insertCell().innerText = input.requestId;
-    row.insertCell().innerText = input.snippet;
+    
+    // Rendering the snippet as a code element
+    const snippetCell = row.insertCell();
+    const codeElement = document.createElement('code');
+    codeElement.textContent = input.snippet;
+    snippetCell.appendChild(codeElement);
+
     row.insertCell().innerText = input.plaintext;
   });
+}
+
+// Function to convert table data to CSV format
+function convertTableToCSV() {
+  const table = document.getElementById('snippetTable');
+  let csvContent = 'data:text/csv;charset=utf-8,';
+
+  const rows = table.querySelectorAll('tr');
+  rows.forEach(row => {
+    const cells = row.querySelectorAll('th, td');
+    const rowData = Array.from(cells).map(cell => cell.innerText).join(',');
+    csvContent += rowData + '\n';
+  });
+
+  return encodeURI(csvContent);
+}
+
+// Function to initiate table download as CSV
+function downloadTableAsCSV() {
+  const csvData = convertTableToCSV();
+  const link = document.createElement('a');
+  link.setAttribute('href', csvData);
+  link.setAttribute('download', 'table_data.csv');
+  document.body.appendChild(link);
+  link.click();
 }
