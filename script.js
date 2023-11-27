@@ -80,7 +80,7 @@ function convertTableToCSV() {
   const rows = table.querySelectorAll('tr');
   rows.forEach(row => {
     const cells = row.querySelectorAll('th, td');
-    const rowData = Array.from(cells).map(cell => cell.innerText).join(',');
+    const rowData = Array.from(cells).map(cell => cell.textContent).join(',');
     csvContent += rowData + '\n';
   });
 
