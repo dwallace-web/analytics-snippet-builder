@@ -72,7 +72,6 @@ function displayInputs() {
   });
 }
 
-// Function to convert table data to CSV format
 function convertTableToCSV() {
   const table = document.getElementById('snippetTable');
   let csvContent = 'data:text/csv;charset=utf-8,';
@@ -80,7 +79,10 @@ function convertTableToCSV() {
   const rows = table.querySelectorAll('tr');
   rows.forEach(row => {
     const cells = row.querySelectorAll('th, td');
-    const rowData = Array.from(cells).map(cell => cell.textContent).join(',');
+    const rowData = Array.from(cells).map(cell => {
+      let cellData = cell.textContent.replace(/"/g, '""'); // Escape double quotes
+      return `"${cellData}"`;
+    }).join(',');
     csvContent += rowData + '\n';
   });
 
