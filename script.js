@@ -16,20 +16,20 @@ function generateSnippet() {
 
 
   if (outputType === 'contentImpression') {
-    generatedSnippet = `(“ContentImpression”, {
-      “Detail”: “${lineOfBusiness} | ${product} | ${variableA} | ${variableB}”
+    generatedSnippet = `("ContentImpression”, {
+      "Detail": "${lineOfBusiness} | ${product} | ${variableA} | ${variableB}”
     })`;
-    plaintextSnippet = `“${lineOfBusiness} | ${product} | ${variableA} | ${variableB}”`;
+    plaintextSnippet = `"${lineOfBusiness} | ${product} | ${variableA} | ${variableB}"`;
   } else if (outputType === 'customError') {
-    generatedSnippet = `(“custom”, {
-      “Detail”: “Error Message: ${lineOfBusiness} | ${product} | ${variableA} | ${variableB}”
+    generatedSnippet = `("custom", {
+      "Detail": "Error Message: ${lineOfBusiness} | ${product} | ${variableA} | ${variableB}"
     })`;
-    plaintextSnippet = `“Error Message: ${lineOfBusiness} | ${product} | ${variableA} | ${variableB}”`;
+    plaintextSnippet = `"Error Message: ${lineOfBusiness} | ${product} | ${variableA} | ${variableB}"`;
   } else if (outputType === 'customButtonClick') {
-    generatedSnippet = `(“customLink”, {
-      “Detail”: “Specialty Button | ${lineOfBusiness} | ${product} | ${variableA} | ${variableB}”
+    generatedSnippet = `("customLink”, {
+      "Detail": "Specialty Button | ${lineOfBusiness} | ${product} | ${variableA} | ${variableB}"
     })`;
-    plaintextSnippet = `“Specialty Button | ${lineOfBusiness} | ${product} | ${variableA} | ${variableB}”`;
+    plaintextSnippet = `"Specialty Button | ${lineOfBusiness} | ${product} | ${variableA} | ${variableB}"`;
   } else if (outputType === 'ACDL') {
     generatedSnippet = `adobeDataLayer.push({
       event: '${lineOfBusiness} | ${product}',
